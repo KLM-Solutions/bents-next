@@ -206,7 +206,8 @@ export default function ChatPage() {
     setLoadingQuestionIndex(initialQuestionIndex);
   
     try {
-      const response = await axios.post('/api/chat', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || '/api';
+      const response = await axios.post(`${apiUrl}/chat`, {
         message: query,
         selected_index: selectedIndex,
         chat_history: currentConversation.map(conv => ({
